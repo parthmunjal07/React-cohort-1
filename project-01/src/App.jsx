@@ -40,94 +40,44 @@ const App = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        maxWidth: "600px",
-        margin: "40px auto",
-        padding: "30px",
-        fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-        backgroundColor: "#ffffff",
-        borderRadius: "16px",
-        boxShadow: "0 10px 30px rgba(0, 0, 0, 0.08)",
-        color: "#333",
-      }}
-    >
-      <h2
-        style={{
-          textAlign: "center",
-          marginBottom: "30px",
-          color: "#111827",
-          fontWeight: "700",
-          letterSpacing: "-0.5px",
-        }}
-      >
+    <div className="max-w-2xl mx-auto my-10 p-8 font-sans bg-[#ffde59] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-xl text-black">
+      <h2 className="text-3xl text-center mb-8 font-black uppercase tracking-widest border-b-4 border-black pb-4">
         Random Users Directory
       </h2>
 
       {status === "loading" && (
-        <div style={{ textAlign: "center", padding: "40px 0" }}>
-          <p style={{ fontSize: "16px", color: "#6b7280", fontWeight: "500" }}>
+        <div className="text-center py-10 bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-lg">
+          <p className="text-xl font-bold uppercase tracking-widest animate-pulse">
             Loading users...
           </p>
         </div>
       )}
 
       {status === "error" && (
-        <div
-          style={{
-            backgroundColor: "#fef2f2",
-            border: "1px solid #fecaca",
-            padding: "16px",
-            borderRadius: "8px",
-            textAlign: "center",
-          }}
-        >
-          <p style={{ margin: 0, color: "#dc2626", fontWeight: "500" }}>
+        <div className="bg-[#ff5757] border-4 border-black p-6 rounded-lg text-center shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+          <p className="m-0 font-black text-lg uppercase tracking-wide">
             Failed to load users. Please try again.
           </p>
         </div>
       )}
 
       {status === "success" && (
-        <ul style={{ listStyleType: "none", padding: 0, margin: 0 }}>
+        <ul className="list-none p-0 m-0 space-y-5">
           {users.map((user) => (
             <li
               key={user.login.uuid}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "16px",
-                padding: "16px",
-                marginBottom: "12px",
-                backgroundColor: "#f9fafb",
-                borderRadius: "12px",
-                border: "1px solid #f3f4f6",
-                transition: "all 0.2s ease",
-              }}
+              className="flex items-center gap-5 p-5 bg-white rounded-lg border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-transform duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]"
             >
               <img
                 src={user.picture.thumbnail}
                 alt={`${user.name.first} ${user.name.last}`}
-                style={{
-                  borderRadius: "50%",
-                  width: "56px",
-                  height: "56px",
-                  objectFit: "cover",
-                  boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-                }}
+                className="w-16 h-16 object-cover rounded-full border-4 border-black bg-[#5ce1e6]"
               />
-              <div style={{ flex: 1 }}>
-                <h4
-                  style={{
-                    margin: "0 0 4px 0",
-                    fontSize: "16px",
-                    color: "#1f2937",
-                    fontWeight: "600",
-                  }}
-                >
+              <div className="flex-1">
+                <h4 className="m-0 text-xl font-black uppercase tracking-wide">
                   {user.name.first} {user.name.last}
                 </h4>
-                <p style={{ margin: 0, fontSize: "14px", color: "#6b7280" }}>
+                <p className="m-0 text-sm font-bold text-gray-700 border-t-2 border-black pt-2 mt-2">
                   {user.email}
                 </p>
               </div>

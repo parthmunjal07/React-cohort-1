@@ -65,128 +65,55 @@ const App = () => {
   const currentJoke = jokes[currentIndex];
 
   return (
-    <div
-      style={{
-        maxWidth: "600px",
-        margin: "40px auto",
-        padding: "30px",
-        fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-        backgroundColor: "#ffffff",
-        borderRadius: "16px",
-        boxShadow: "0 10px 30px rgba(0, 0, 0, 0.08)",
-        color: "#333",
-      }}
-    >
-      <h2
-        style={{
-          textAlign: "center",
-          marginBottom: "30px",
-          color: "#111827",
-          fontWeight: "700",
-          letterSpacing: "-0.5px",
-        }}
-      >
+    <div className="max-w-2xl mx-auto my-14 p-8 font-sans bg-[#ffde59] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-xl text-black">
+      <h2 className="text-3xl text-center mb-8 font-black uppercase tracking-widest border-b-4 border-black pb-4">
         Random Jokes
       </h2>
 
       {status === "loading" && jokes.length === 0 && (
-        <div style={{ textAlign: "center", padding: "40px 0" }}>
-          <p style={{ fontSize: "16px", color: "#6b7280", fontWeight: "500" }}>
+        <div className="text-center py-10 bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-lg">
+          <p className="text-xl font-bold uppercase tracking-widest animate-pulse">
             Loading jokes...
           </p>
         </div>
       )}
 
       {status === "error" && jokes.length === 0 && (
-        <div
-          style={{
-            backgroundColor: "#fef2f2",
-            border: "1px solid #fecaca",
-            padding: "16px",
-            borderRadius: "8px",
-            textAlign: "center",
-          }}
-        >
-          <p style={{ margin: 0, color: "#dc2626", fontWeight: "500" }}>
+        <div className="bg-[#ff5757] border-4 border-black p-6 rounded-lg text-center shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+          <p className="m-0 font-black text-lg uppercase tracking-wide">
             Failed to load jokes. Please try again.
           </p>
         </div>
       )}
 
       {jokes.length > 0 && currentJoke && (
-        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-          <div
-            style={{
-              padding: "32px 24px",
-              backgroundColor: "#f9fafb",
-              borderRadius: "12px",
-              border: "1px solid #f3f4f6",
-              minHeight: "120px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
-            }}
-          >
-            <p
-              style={{
-                margin: 0,
-                fontSize: "18px",
-                color: "#374151",
-                lineHeight: "1.6",
-                fontWeight: "500",
-              }}
-            >
+        <div className="flex flex-col gap-8">
+          <div className="p-8 bg-white rounded-lg border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] min-h-[160px] flex items-center justify-center text-center transition-transform duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]">
+            <p className="m-0 text-xl font-black uppercase tracking-wide text-gray-900 leading-relaxed">
               {currentJoke.content}
             </p>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+          <div className="flex justify-between items-center gap-4 flex-wrap sm:flex-nowrap">
             <button
               onClick={handlePrev}
               disabled={currentIndex === 0}
-              style={{
-                padding: "10px 20px",
-                fontSize: "14px",
-                fontWeight: "600",
-                color: currentIndex === 0 ? "#9ca3af" : "#4b5563",
-                backgroundColor: currentIndex === 0 ? "#f3f4f6" : "#ffffff",
-                border: "1px solid",
-                borderColor: currentIndex === 0 ? "#e5e7eb" : "#d1d5db",
-                borderRadius: "8px",
-                cursor: currentIndex === 0 ? "not-allowed" : "pointer",
-                transition: "all 0.2s ease",
-              }}
+              className={`px-5 py-3 text-sm font-black uppercase tracking-widest border-4 rounded-lg transition-all ${
+                currentIndex === 0
+                  ? "bg-gray-200 text-gray-500 border-gray-400 cursor-not-allowed"
+                  : "bg-[#5ce1e6] text-black border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] cursor-pointer"
+              }`}
             >
               Previous
             </button>
 
-            <span style={{ fontSize: "14px", color: "#6b7280", fontWeight: "500" }}>
+            <span className="text-base font-black uppercase tracking-widest bg-white px-4 py-2 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-lg">
               Joke {currentIndex + 1}
             </span>
 
             <button
               onClick={handleNext}
-              style={{
-                padding: "10px 20px",
-                fontSize: "14px",
-                fontWeight: "600",
-                color: "#ffffff",
-                backgroundColor: "#2563eb",
-                border: "none",
-                borderRadius: "8px",
-                cursor: "pointer",
-                transition: "background-color 0.2s ease",
-                boxShadow: "0 2px 4px rgba(37, 99, 235, 0.2)",
-              }}
-              onMouseOver={(e) => (e.target.style.backgroundColor = "#1d4ed8")}
-              onMouseOut={(e) => (e.target.style.backgroundColor = "#2563eb")}
+              className="px-5 py-3 text-sm font-black uppercase tracking-widest border-4 border-black rounded-lg bg-[#cb6ce6] text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] cursor-pointer"
             >
               Next Joke
             </button>
