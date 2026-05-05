@@ -2,12 +2,124 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>project-08</title>
+    <title>SPA Login & Register</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+      }
+
+      .form-card {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        box-sizing: border-box;
+      }
+
+      .btn-primary {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div class="container">
+      <section id="login-view" class="form-card">
+        <h2>Welcome Back</h2>
+        <form id="login-form">
+          <input type="email" id="login-email" placeholder="Email" required />
+          <input type="password" id="login-password" placeholder="Password" required />
+          <button type="submit" class="btn-primary">Login</button>
+        </form>
+        <p>
+          Don't have an account?
+          <a href="#" id="go-to-register">Register here</a>
+        </p>
+      </section>
+
+      <section id="register-view" class="form-card hidden">
+        <h2>Create Account</h2>
+        <form id="register-form">
+          <input type="text" id="reg-username" placeholder="Full Name" required />
+          <input type="email" id="reg-email" placeholder="Email" required />
+          <input type="password" id="reg-password" placeholder="Password" required />
+          <input type="text" id="reg-role" placeholder="Role" required />
+          <button type="submit" class="btn-primary">Sign Up</button>
+        </form>
+        <p>
+          Already have an account? <a href="#" id="go-to-login">Login here</a>
+        </p>
+      </section>
+    </div>
+    <script src="main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loginView = document.getElementById("login-view");
+        const registerView = document.getElementById("register-view");
+
+        const toRegisterLink = document.getElementById("go-to-register");
+        const toLoginLink = document.getElementById("go-to-login");
+
+        toRegisterLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          loginView.classList.add("hidden");
+          registerView.classList.remove("hidden");
+        });
+
+        toLoginLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          registerView.classList.add("hidden");
+          loginView.classList.remove("hidden");
+        });
+
+      });
+    </script>
   </body>
 </html>
